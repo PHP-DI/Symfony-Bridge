@@ -1,18 +1,19 @@
 <?php
 
-namespace DI\Symfony2;
+namespace DI\Bridge\Symfony;
 
 use DI\Container;
 use DI\NotFoundException;
 use Symfony\Component\DependencyInjection\Container as SymfonyContainer;
+use Symfony\Component\DependencyInjection\ContainerInterface as SymfonyContainerInterface;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 
 /**
- * Replacement for the Symfony 2 container.
+ * Replacement for the Symfony service container.
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
  */
-class Symfony2Container extends SymfonyContainer
+class SymfonyContainerBridge extends SymfonyContainer implements SymfonyContainerInterface
 {
     /**
      * @var Container

@@ -33,7 +33,7 @@ class AppKernel extends Kernel
      */
     protected function getContainerBaseClass()
     {
-        return 'DI\Symfony2\Symfony2Container';
+        return 'DI\Bridge\Symfony\SymfonyContainerBridge';
     }
 
     /**
