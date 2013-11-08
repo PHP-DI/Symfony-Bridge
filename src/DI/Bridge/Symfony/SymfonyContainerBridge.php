@@ -28,6 +28,14 @@ class SymfonyContainerBridge extends SymfonyContainer implements SymfonyContaine
         $this->fallbackContainer = $container;
     }
 
+    /**
+     * @return Container
+     */
+    public function getPHPDIContainer()
+    {
+        return $this->fallbackContainer;
+    }
+
     public function has($id)
     {
         if (parent::has($id)) {
