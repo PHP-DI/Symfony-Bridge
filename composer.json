@@ -1,0 +1,16 @@
+{
+    "name": "mnapoli/php-di-symfony2",
+    "type": "library",
+    "description": "Integrates PHP-DI to Symfony 2",
+    "homepage": "https://github.com/mnapoli/PHP-DI-Symfony2/",
+    "license": "MIT",
+    "autoload": {
+        "psr-0": {
+            "DI\\Symfony2": "src/"
+        }
+    },
+    "require": {
+        "mnapoli/php-di": "~4.0@dev",
+        "symfony/dependency-injection": "~2.0"
+    }
+}
