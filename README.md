@@ -46,7 +46,7 @@ class AppKernel extends Kernel
         // Configure your container here
         // http://php-di.org/doc/container-configuration
         $builder = new \DI\ContainerBuilder();
-        $builder->setDefinitionCache(new Doctrine\Common\Cache\ArrayCache());
+        $builder->wrapContainer($this->getContainer());
 
         $this->getContainer()->setPHPDIContainer($builder->build());
     }
