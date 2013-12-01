@@ -3,6 +3,7 @@
 namespace DI\Bridge\Symfony;
 
 use DI\Container;
+use DI\ContainerInterface;
 use DI\NotFoundException;
 use Symfony\Component\DependencyInjection\Container as SymfonyContainer;
 use Symfony\Component\DependencyInjection\ContainerInterface as SymfonyContainerInterface;
@@ -13,7 +14,7 @@ use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
  */
-class SymfonyContainerBridge extends SymfonyContainer implements SymfonyContainerInterface
+class SymfonyContainerBridge extends SymfonyContainer implements SymfonyContainerInterface, ContainerInterface
 {
     /**
      * @var Container
