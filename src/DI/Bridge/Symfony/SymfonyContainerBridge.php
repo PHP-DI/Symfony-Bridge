@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 
 /**
  * Replacement for the Symfony service container.
- * 
+ *
  * This container extends Symfony's container with a fallback container when an entry is not found.
  * That way, we can put PHP-DI's container as a fallback to Symfony's.
  *
