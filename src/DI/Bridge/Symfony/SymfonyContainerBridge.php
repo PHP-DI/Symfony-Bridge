@@ -1,8 +1,14 @@
 <?php
+/**
+ * PHP-DI
+ *
+ * @link      http://php-di.org/
+ * @copyright Matthieu Napoli (http://mnapoli.fr/)
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT (see the LICENSE file)
+ */
 
 namespace DI\Bridge\Symfony;
 
-use DI\Container;
 use DI\ContainerInterface;
 use DI\NotFoundException;
 use Symfony\Component\DependencyInjection\Container as SymfonyContainer;
@@ -11,28 +17,31 @@ use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 
 /**
  * Replacement for the Symfony service container.
+ * 
+ * This container extends Symfony's container with a fallback container when an entry is not found.
+ * That way, we can put PHP-DI's container as a fallback to Symfony's.
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
  */
 class SymfonyContainerBridge extends SymfonyContainer implements SymfonyContainerInterface, ContainerInterface
 {
     /**
-     * @var Container
+     * @var ContainerInterface|null
      */
     private $fallbackContainer;
 
     /**
-     * @param Container $container
+     * @param ContainerInterface $container
      */
-    public function setPHPDIContainer(Container $container)
+    public function setFallbackContainer(ContainerInterface $container)
     {
         $this->fallbackContainer = $container;
     }
 
     /**
-     * @return Container
+     * @return ContainerInterface
      */
-    public function getPHPDIContainer()
+    public function getFallbackContainer()
     {
         return $this->fallbackContainer;
     }
