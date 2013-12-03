@@ -80,3 +80,24 @@ class ProductController
     }
 }
 ```
+
+
+## How it works
+
+Here is the workflow of Symfony:
+
+- if cache is not fresh, create a `ContainerBuilder` and compile it
+- the compiled container extends the class defined by `Kernel::getContainerBaseClass()`
+- require the compiled container
+
+How does it tests that the cache is not fresh (in dev environment)?
+
+- for each class that may be cached (Kernel, Bundle, service…), a metadata is stored in the cache
+- the metadata contains the last modification time of the file
+- if one of these files has been edited since the last compilation, the cache is not fresh
+
+How PHP-DI integrates:
+
+- PHP-DI redefines `Kernel::getContainerBaseClass()` to use its chained container (`SymfonyContainerBridge`)
+- the chained container first tries to get the entry in Symfony's compiled container
+- else it looks for the entry in PHP-DI's container
