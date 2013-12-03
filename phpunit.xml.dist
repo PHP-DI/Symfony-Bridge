@@ -14,8 +14,9 @@
          bootstrap="./tests/bootstrap.php">
 
     <testsuites>
-        <testsuite name="Unit tests">
+        <testsuite name="Tests">
             <directory>./tests/UnitTest</directory>
+            <directory>./tests/FunctionalTest</directory>
         </testsuite>
     </testsuites>
 
