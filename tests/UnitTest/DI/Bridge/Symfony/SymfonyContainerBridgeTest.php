@@ -10,10 +10,12 @@
 namespace UnitTest\DI\Bridge\Symfony;
 
 use DI\Bridge\Symfony\SymfonyContainerBridge;
+use DI\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class SymfonyContainerBridgeTest extends \PHPUnit_Framework_TestCase
 {
-    public function testHasCallsFallbackContainer()
+    public function testHasFallback()
     {
         $wrapper = new SymfonyContainerBridge();
 
@@ -26,5 +28,41 @@ class SymfonyContainerBridgeTest extends \PHPUnit_Framework_TestCase
         $wrapper->setFallbackContainer($fallback);
 
         $this->assertFalse($wrapper->has('foo'));
+    }
+
+    public function testGetFallback()
+    {
+        $wrapper = new SymfonyContainerBridge();
+
+        $fallback = $this->getMockForAbstractClass('DI\ContainerInterface');
+        $fallback->expects($this->once())
+            ->method('get')
+            ->with('foo')
+            ->will($this->returnValue('bar'));
+
+        $wrapper->setFallbackContainer($fallback);
+
+        $this->assertEquals('bar', $wrapper->get('foo'));
+    }
+
+    public function testGetNotFoundReturnNull()
+    {
+        $wrapper = new SymfonyContainerBridge();
+
+        $wrapper->setFallbackContainer(ContainerBuilder::buildDevContainer());
+
+        $this->assertNull($wrapper->get('foo', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+    }
+
+    /**
+     * @expectedException \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
+     */
+    public function testGetNotFoundException()
+    {
+        $wrapper = new SymfonyContainerBridge();
+
+        $wrapper->setFallbackContainer(ContainerBuilder::buildDevContainer());
+
+        $this->assertNull($wrapper->get('foo'));
     }
 }
