@@ -29,7 +29,9 @@ class ContainerInteractionTest extends \PHPUnit_Framework_TestCase
         $wrapper->setFallbackContainer($builder->build());
 
         // TODO
+        $this->markTestIncomplete('TODO');
     }
+
     /**
      * @test Get a Symfony entry from PHP-DI's container
      */
@@ -38,9 +40,7 @@ class ContainerInteractionTest extends \PHPUnit_Framework_TestCase
         $wrapper = new SymfonyContainerBridge();
 
         $class2 = new Class2();
-        $wrapper->set('IntegrationTests\DI\Fixtures\Class2', $class2);
-
-        $this->assertSame($class2, $wrapper->get('IntegrationTests\DI\Fixtures\Class2'));
+        $wrapper->set('FunctionalTest\DI\Bridge\Symfony\Fixtures\Class2', $class2);
 
         $builder = new ContainerBuilder();
         $builder->wrapContainer($wrapper);
@@ -50,5 +50,25 @@ class ContainerInteractionTest extends \PHPUnit_Framework_TestCase
         $class1 = $wrapper->get('FunctionalTest\DI\Bridge\Symfony\Fixtures\Class1');
 
         $this->assertSame($class2, $class1->param1);
+    }
+
+    /**
+     * @test Alias a Symfony entry from PHP-DI's container
+     */
+    public function phpdiAliasToSymfony()
+    {
+        $wrapper = new SymfonyContainerBridge();
+
+        $class2 = new Class2();
+        $wrapper->set('bar', $class2);
+
+        $builder = new ContainerBuilder();
+        $builder->wrapContainer($wrapper);
+        $fallback = $builder->build();
+        // foo -> bar
+        $fallback->set('foo', \DI\link('bar'));
+        $wrapper->setFallbackContainer($fallback);
+
+        $this->assertSame($class2, $wrapper->get('foo'));
     }
 }
