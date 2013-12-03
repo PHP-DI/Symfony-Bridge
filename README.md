@@ -2,6 +2,8 @@
 
 **Work in progress**
 
+[![Build Status](https://travis-ci.org/mnapoli/PHP-DI-Symfony2.png?branch=master)](https://travis-ci.org/mnapoli/PHP-DI-Symfony2)
+
 This library provides integration for PHP-DI v4 with Symfony 2.
 
 [PHP-DI](php-di.org) is a Dependency Injection Container for PHP.
