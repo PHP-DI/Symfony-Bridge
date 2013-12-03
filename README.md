@@ -100,4 +100,4 @@ How PHP-DI integrates:
 
 - PHP-DI redefines `Kernel::getContainerBaseClass()` to use its chained container (`SymfonyContainerBridge`)
 - the chained container first tries to get the entry in Symfony's compiled container
-- else it looks for the entry in PHP-DI's container
+- else it looks for the entry in PHP-DI's container (and PHP-DI can leverage its caching here)
