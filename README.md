@@ -61,8 +61,8 @@ Example for the routing configuration:
 
 ```yaml
 my_route:
-    pattern:  /product/stock/clear
-    defaults: { _controller: Acme\DemoBundle\Controller\ProductController:clearStockAction }
+    pattern:  /product-stock/clear
+    defaults: { _controller: MyBundle\Controller\ProductController:clearAction }
 ```
 
 Example with constructor injection:
@@ -77,7 +77,7 @@ class ProductController
         $this->productService = $productService;
     }
 
-    public function clearStockAction()
+    public function clearAction()
     {
         $this->productService->clearStock();
     }
@@ -95,7 +95,7 @@ class ProductController
      */
     private $productService;
 
-    public function clearStockAction()
+    public function clearAction()
     {
         $this->productService->clearStock();
     }
