@@ -17,22 +17,6 @@ use FunctionalTest\DI\Bridge\Symfony\Fixtures\Class2;
 class ContainerInteractionTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @test Get a PHP-DI entry from Symfony's container
-     */
-    public function symfonyGetInPHPDI()
-    {
-        $wrapper = new SymfonyContainerBridge();
-//        $wrapper->set('FunctionalTest\DI\Bridge\Symfony\Fixtures\Class1', );
-
-        $builder = new ContainerBuilder();
-        $builder->wrapContainer($wrapper);
-        $wrapper->setFallbackContainer($builder->build());
-
-        // TODO
-        $this->markTestIncomplete('TODO');
-    }
-
-    /**
      * @test Get a Symfony entry from PHP-DI's container
      */
     public function phpdiGetInSymfony()

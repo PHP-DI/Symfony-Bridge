@@ -46,6 +46,9 @@ class SymfonyContainerBridge extends SymfonyContainer implements SymfonyContaine
         return $this->fallbackContainer;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function has($id)
     {
         if (parent::has($id)) {
@@ -59,6 +62,9 @@ class SymfonyContainerBridge extends SymfonyContainer implements SymfonyContaine
         return $this->fallbackContainer->has($id);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function get($id, $invalidBehavior = self::EXCEPTION_ON_INVALID_REFERENCE)
     {
         if (parent::has($id)) {
