@@ -1,7 +1,5 @@
 # PHP-DI integration with Symfony 2
 
-**Work in progress**
-
 [![Build Status](https://travis-ci.org/mnapoli/PHP-DI-Symfony2.png?branch=master)](https://travis-ci.org/mnapoli/PHP-DI-Symfony2)
 
 This library provides integration for PHP-DI v4 with Symfony 2.
@@ -50,7 +48,7 @@ class AppKernel extends Kernel
         $builder = new \DI\ContainerBuilder();
         $builder->wrapContainer($this->getContainer());
 
-        $this->getContainer()->setPHPDIContainer($builder->build());
+        $this->getContainer()->setFallbackContainer($builder->build());
     }
 }
 ```
@@ -58,6 +56,16 @@ class AppKernel extends Kernel
 ## Now you can play
 
 You can now define controllers as services, without any configuration, using PHP-DI's magic!
+
+Example for the routing configuration:
+
+```yaml
+my_route:
+    pattern:  /product/stock/clear
+    defaults: { _controller: Acme\DemoBundle\Controller\ProductController:clearStockAction }
+```
+
+Example with constructor injection:
 
 ```php
 class ProductController
@@ -69,14 +77,27 @@ class ProductController
         $this->productService = $productService;
     }
 
-    public function indexAction()
+    public function clearStockAction()
     {
-        $products = $this->productService->getAllProducts();
+        $this->productService->clearStock();
+    }
+}
+```
 
-        return $this->templating->renderResponse(
-            'MyBundle::products.html.twig',
-            ['products' => $products]
-        );
+Example with property injection:
+
+```php
+class ProductController
+{
+    /**
+     * @Inject
+     * @var ProductService
+     */
+    private $productService;
+
+    public function clearStockAction()
+    {
+        $this->productService->clearStock();
     }
 }
 ```
