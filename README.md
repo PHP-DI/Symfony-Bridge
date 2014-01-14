@@ -65,6 +65,8 @@ my_route:
     defaults: { _controller: MyBundle\Controller\ProductController:clearAction }
 ```
 
+**Careful!** Note that you need to use `:` as a separator, not `::` (else it will not go through the container).
+
 Example with constructor injection:
 
 ```php
@@ -101,6 +103,8 @@ class ProductController
     }
 }
 ```
+
+You can notice that you do not extend the `Controller` base class.
 
 
 ## How it works
