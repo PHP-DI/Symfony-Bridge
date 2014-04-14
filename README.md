@@ -6,7 +6,7 @@ This library provides integration for PHP-DI v4 with Symfony 2.
 
 [PHP-DI](php-di.org) is a Dependency Injection Container for PHP.
 
-*This library is compatible only with **PHP-DI 4.0** and above.*
+This library is compatible only with **PHP-DI 4.0** and above.
 
 **The documentation is here: http://php-di.org/doc/frameworks/symfony2.html**
 
