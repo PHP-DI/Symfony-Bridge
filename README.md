@@ -8,7 +8,7 @@ This library provides integration for PHP-DI v4 with Symfony 2.
 
 *This library is compatible only with **PHP-DI 4.0** and above.*
 
-**The up to date documentation for how to use this module is here: http://php-di.org/doc/frameworks/symfony2.html**
+**The documentation is here: http://php-di.org/doc/frameworks/symfony2.html**
 
 
 ## How it works
