@@ -9,7 +9,6 @@
 
 namespace DI\Bridge\Symfony;
 
-use DI\Bridge\Symfony\CompilerPass\CheckExceptionOnInvalidReferenceBehaviorPass as ReplacementPass;
 use Interop\Container\ContainerInterface;
 use Symfony\Component\DependencyInjection\Compiler\CheckExceptionOnInvalidReferenceBehaviorPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -40,7 +39,7 @@ abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
     {
         $containerBuilder = parent::buildContainer();
 
-        $this->replaceInvalidReferenceBehaviorPass($containerBuilder);
+        $this->removeInvalidReferenceBehaviorPass($containerBuilder);
 
         return $containerBuilder;
     }
@@ -56,12 +55,16 @@ abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
     }
 
     /**
-     * Replace the CheckExceptionOnInvalidReferenceBehaviorPass with our own:
-     * the original was not looking into PHP-DI's entries and thus throwing exceptions.
+     * Remove the CheckExceptionOnInvalidReferenceBehaviorPass because
+     * it was not looking into PHP-DI's entries and thus throwing exceptions.
+     *
+     * @todo Replace it by an alternative that can search into PHP-DI too
+     *       Problem: PHP-DI is not initialized when Symfony's container is compiled, because
+     *       it depends on Symfony's container for fallback (cycle…)
      *
      * @param ContainerBuilder $container
      */
-    private function replaceInvalidReferenceBehaviorPass(ContainerBuilder $container)
+    private function removeInvalidReferenceBehaviorPass(ContainerBuilder $container)
     {
         $passConfig = $container->getCompilerPassConfig();
         $compilationPasses = $passConfig->getRemovingPasses();
@@ -69,12 +72,7 @@ abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
         foreach ($compilationPasses as $i => $pass) {
             if ($pass instanceof CheckExceptionOnInvalidReferenceBehaviorPass) {
                 unset($compilationPasses[$i]);
-                continue;
-                // Replace the original class with our own replacement
-                $compilationPasses[$i] = new ReplacementPass(array(
-                    $container,
-                    $this->getPHPDIContainer(),
-                ));
+                break;
             }
         }
 
