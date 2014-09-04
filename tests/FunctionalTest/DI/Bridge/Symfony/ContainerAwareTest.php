@@ -9,25 +9,24 @@
 
 namespace FunctionalTest\DI\Bridge\Symfony;
 
-use DI\Bridge\Symfony\SymfonyContainerBridge;
-use DI\ContainerBuilder;
 use FunctionalTest\DI\Bridge\Symfony\Fixtures\ContainerAwareController;
 
-class ContainerAwareInterfaceTest extends \PHPUnit_Framework_TestCase
+/**
+ * @coversNothing
+ */
+class ContainerAwareInterfaceTest extends AbstractFunctionalTest
 {
     /**
      * @link https://github.com/mnapoli/PHP-DI-Symfony2/issues/2
      */
     public function testContainerAware()
     {
-        $wrapper = new SymfonyContainerBridge();
-        $builder = new ContainerBuilder();
-        $builder->wrapContainer($wrapper);
-        $wrapper->setFallbackContainer($builder->build());
+        $kernel = $this->createKernel();
+        $container = $kernel->getContainer();
 
         /** @var ContainerAwareController $class */
-        $class = $wrapper->get('FunctionalTest\DI\Bridge\Symfony\Fixtures\ContainerAwareController');
+        $class = $container->get('FunctionalTest\DI\Bridge\Symfony\Fixtures\ContainerAwareController');
 
-        $this->assertSame($wrapper, $class->container);
+        $this->assertSame($container, $class->container);
     }
 }

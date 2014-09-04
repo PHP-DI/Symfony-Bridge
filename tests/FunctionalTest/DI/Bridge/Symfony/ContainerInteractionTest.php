@@ -10,33 +10,39 @@
 namespace FunctionalTest\DI\Bridge\Symfony;
 
 use DI\Bridge\Symfony\SymfonyContainerBridge;
-use DI\ContainerBuilder;
+use DI\Container;
 use FunctionalTest\DI\Bridge\Symfony\Fixtures\Class1;
 use FunctionalTest\DI\Bridge\Symfony\Fixtures\Class2;
-use Symfony\Component\DependencyInjection\Compiler\CheckExceptionOnInvalidReferenceBehaviorPass;
-use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
-use Symfony\Component\DependencyInjection\Reference;
 
-class ContainerInteractionTest extends \PHPUnit_Framework_TestCase
+/**
+ * Tests interactions between containers, i.e. entries that reference other entries in
+ * other containers.
+ *
+ * @coversNothing
+ */
+class ContainerInteractionTest extends AbstractFunctionalTest
 {
     /**
      * @test Get a Symfony entry from PHP-DI's container
      */
-    public function phpdiGetInSymfony()
+    public function phpdi_should_get_entries_from_symfony()
     {
-        $wrapper = new SymfonyContainerBridge();
+        $kernel = $this->createKernel('class2.yml');
 
-        $class2 = new Class2();
-        $wrapper->set('FunctionalTest\DI\Bridge\Symfony\Fixtures\Class2', $class2);
+        /** @var SymfonyContainerBridge $container */
+        $container = $kernel->getContainer();
+        /** @var Container $phpdiContainer */
+        $phpdiContainer = $container->getFallbackContainer();
 
-        $builder = new ContainerBuilder();
-        $builder->wrapContainer($wrapper);
-        $wrapper->setFallbackContainer($builder->build());
+        $phpdiContainer->set(
+            'foo',
+            \DI\object('FunctionalTest\DI\Bridge\Symfony\Fixtures\Class1')
+                ->constructor(\DI\link('class2'))
+        );
 
-        /** @var Class1 $class1 */
-        $class1 = $wrapper->get('FunctionalTest\DI\Bridge\Symfony\Fixtures\Class1');
+        $class1 = $container->get('foo');
 
-        $this->assertSame($class2, $class1->param1);
+        $this->assertTrue($class1 instanceof Class1);
     }
 
     /**
@@ -44,70 +50,29 @@ class ContainerInteractionTest extends \PHPUnit_Framework_TestCase
      */
     public function symfonyGetInPHPDI()
     {
-        $tempFile = __DIR__ . '/temp/container.php';
-        if (file_exists($tempFile)) {
-            unlink($tempFile);
-        }
+        $kernel = $this->createKernel('class1.yml');
 
-        // Create and compile Symfony's container
-        $symfony = new \Symfony\Component\DependencyInjection\ContainerBuilder();
-        $symfony
-            ->register('class1', 'FunctionalTest\DI\Bridge\Symfony\Fixtures\Class1')
-            ->addArgument(new Reference('FunctionalTest\DI\Bridge\Symfony\Fixtures\Class2'));
-        $passConfig = $symfony->getCompilerPassConfig();
-        $compilationPasses = $passConfig->getRemovingPasses();
-        $newCompilationPasses = array();
-        foreach ($compilationPasses as $pass) {
-            if (! $pass instanceof CheckExceptionOnInvalidReferenceBehaviorPass) {
-                $newCompilationPasses[] = $pass;
-            }
-        }
-        $symfony->getCompilerPassConfig()->setRemovingPasses($newCompilationPasses);
-        $symfony->compile();
+        $class1 = $kernel->getContainer()->get('class1');
 
-        $dumper = new PhpDumper($symfony);
-        $code = $dumper->dump(array(
-            'class' => 'SymfonyCachedContainer',
-            'base_class' => 'DI\Bridge\Symfony\SymfonyContainerBridge',
-        ));
-        file_put_contents($tempFile, $code);
-        require $tempFile;
-
-        /** @var SymfonyContainerBridge $wrapper */
-        /** @noinspection PhpUndefinedClassInspection */
-        $wrapper = new \SymfonyCachedContainer();
-
-        $builder = new ContainerBuilder();
-        $builder->wrapContainer($wrapper);
-        $phpdi = $builder->build();
-        $wrapper->setFallbackContainer($phpdi);
-
-        $class2 = new Class2();
-        $phpdi->set('FunctionalTest\DI\Bridge\Symfony\Fixtures\Class2', $class2);
-
-        /** @var Class1 $class1 */
-        $class1 = $wrapper->get('FunctionalTest\DI\Bridge\Symfony\Fixtures\Class1');
-
-        $this->assertSame($class2, $class1->param1);
+        $this->assertTrue($class1 instanceof Class1);
     }
 
     /**
      * @test Alias a Symfony entry from PHP-DI's container
      */
-    public function phpdiAliasToSymfony()
+    public function phpdi_aliases_can_reference_symfony_entries()
     {
-        $wrapper = new SymfonyContainerBridge();
+        $kernel = $this->createKernel('class2.yml');
 
-        $class2 = new Class2();
-        $wrapper->set('bar', $class2);
+        /** @var SymfonyContainerBridge $container */
+        $container = $kernel->getContainer();
+        /** @var Container $phpdiContainer */
+        $phpdiContainer = $container->getFallbackContainer();
 
-        $builder = new ContainerBuilder();
-        $builder->wrapContainer($wrapper);
-        $fallback = $builder->build();
-        // foo -> bar
-        $fallback->set('foo', \DI\link('bar'));
-        $wrapper->setFallbackContainer($fallback);
+        $phpdiContainer->set('foo', \DI\link('class2'));
 
-        $this->assertSame($class2, $wrapper->get('foo'));
+        $class2 = $container->get('foo');
+
+        $this->assertTrue($class2 instanceof Class2);
     }
 }

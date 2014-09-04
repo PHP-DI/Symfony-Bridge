@@ -17,10 +17,13 @@
     },
     "require": {
         "mnapoli/php-di": "~4.0",
-        "symfony/dependency-injection": "~2.0"
+        "symfony/dependency-injection": "~2.3",
+        "symfony/http-kernel": "~2.3",
+        "symfony/proxy-manager-bridge": "~2.3",
+        "symfony/config": "~2.3"
     },
     "require-dev": {
-        "symfony/config": "~2.0",
-        "phpunit/phpunit": "~4.0"
+        "phpunit/phpunit": "~4.0",
+        "symfony/filesystem": "~2.1"
     }
 }
