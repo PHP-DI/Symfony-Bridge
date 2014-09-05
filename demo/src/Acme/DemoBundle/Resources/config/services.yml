@@ -1,0 +1,4 @@
+services:
+    foo:
+        class: Acme\DemoBundle\Service\FooService
+        arguments: [ "@Acme\DemoBundle\Service\BarService" ]

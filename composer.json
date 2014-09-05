@@ -6,13 +6,13 @@
     "license": "MIT",
     "autoload": {
         "psr-0": {
-            "DI\\Bridge\\Symfony": "src/"
+            "DI\\Bridge\\Symfony\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-0": {
-            "UnitTest\\DI\\Bridge\\Symfony": "tests/",
-            "FunctionalTest\\DI\\Bridge\\Symfony": "tests/"
+            "UnitTest\\DI\\Bridge\\Symfony\\": "tests/",
+            "FunctionalTest\\DI\\Bridge\\Symfony\\": "tests/"
         }
     },
     "require": {
