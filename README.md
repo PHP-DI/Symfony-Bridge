@@ -1,6 +1,6 @@
 # PHP-DI integration with Symfony 2
 
-[![Build Status](https://travis-ci.org/mnapoli/PHP-DI-Symfony2.png?branch=master)](https://travis-ci.org/mnapoli/PHP-DI-Symfony2)
+[![Build Status](https://travis-ci.org/PHP-DI/Symfony2-Bridge.png?branch=master)](https://travis-ci.org/PHP-DI/Symfony2-Bridge)
 
 This library provides integration for PHP-DI v4 with Symfony 2.
 
