@@ -9,12 +9,12 @@
 
 namespace DI\Bridge\Symfony;
 
-use DI\ContainerInterface;
 use DI\NotFoundException;
 use Symfony\Component\DependencyInjection\Container as SymfonyContainer;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface as SymfonyContainerInterface;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
+use Interop\Container\ContainerInterface;
 
 /**
  * Replacement for the Symfony service container.
