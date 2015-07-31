@@ -2,14 +2,13 @@
 
 [![Build Status](https://travis-ci.org/PHP-DI/Symfony2-Bridge.png?branch=master)](https://travis-ci.org/PHP-DI/Symfony2-Bridge)
 
-This library provides integration for PHP-DI v4 with Symfony 2.
+This package provides integration for PHP-DI 4 with Symfony 2.
 
 [PHP-DI](http://php-di.org) is a Dependency Injection Container for PHP.
 
-This library is compatible only with **PHP-DI 4.0** and above.
+This package is compatible with **PHP-DI 4.x**.
 
 **The documentation is here: http://php-di.org/doc/frameworks/symfony2.html**
-
 
 ## How it works
 
