@@ -5,8 +5,8 @@
     "homepage": "https://github.com/PHP-DI/Symfony2-Bridge/",
     "license": "MIT",
     "autoload": {
-        "psr-0": {
-            "DI\\Bridge\\Symfony": "src/"
+        "psr-4": {
+            "DI\\Bridge\\Symfony\\": "src/"
         }
     },
     "autoload-dev": {
