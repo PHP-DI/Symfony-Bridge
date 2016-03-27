@@ -16,6 +16,7 @@
         }
     },
     "require": {
+        "php": "~5.4|~7.0",
         "php-di/php-di": "^5.0",
         "symfony/dependency-injection": "~2.0"
     },
