@@ -2,7 +2,7 @@
     "name": "php-di/symfony2-bridge",
     "type": "library",
     "description": "Integrates PHP-DI to Symfony 2",
-    "homepage": "https://github.com/PHP-DI/Symfony2-Bridge/",
+    "homepage": "http://php-di.org/doc/frameworks/symfony2.html",
     "license": "MIT",
     "autoload": {
         "psr-4": {
