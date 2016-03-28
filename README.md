@@ -1,14 +1,18 @@
-# PHP-DI integration with Symfony 2
+# PHP-DI integration with Symfony
 
 [![Build Status](https://travis-ci.org/PHP-DI/Symfony2-Bridge.png?branch=master)](https://travis-ci.org/PHP-DI/Symfony2-Bridge)
 
-This package provides integration for PHP-DI with Symfony 2.
+This package provides integration for PHP-DI with Symfony.
 
-[PHP-DI](http://php-di.org) is a Dependency Injection Container for PHP.
-
-This package is compatible with PHP-DI **4.x** and **5.x**.
+[PHP-DI](http://php-di.org) is a dependency injection container for PHP.
 
 **The documentation is here: http://php-di.org/doc/frameworks/symfony2.html**
+
+## Requirements
+
+- PHP 5.5 or above
+- PHP-DI 5.*
+- Symfony 3.*
 
 ## How it works
 
