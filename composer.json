@@ -11,16 +11,22 @@
     },
     "autoload-dev": {
         "psr-0": {
-            "UnitTest\\DI\\Bridge\\Symfony": "tests/",
-            "FunctionalTest\\DI\\Bridge\\Symfony": "tests/"
+            "UnitTest\\DI\\Bridge\\Symfony\\": "tests/",
+            "FunctionalTest\\DI\\Bridge\\Symfony\\": "tests/"
         }
     },
     "require": {
         "php": "~5.5|~7.0",
         "php-di/php-di": "^5.0",
-        "symfony/dependency-injection": "^3.0"
+        "symfony/dependency-injection": "^3.0",
+        "symfony/http-kernel": "^3.0",
+        "symfony/proxy-manager-bridge": "^3.0",
+        "symfony/config": "^3.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.8"
+        "phpunit/phpunit": "^4.8",
+        "symfony/filesystem": "^3.0",
+        "symfony/yaml": "^3.0",
+        "symfony/debug": "^3.0"
     }
 }
