@@ -1,7 +1,7 @@
 {
     "name": "php-di/symfony2-bridge",
     "type": "library",
-    "description": "Integrates PHP-DI to Symfony 2",
+    "description": "Integrates PHP-DI to Symfony",
     "homepage": "http://php-di.org/doc/frameworks/symfony2.html",
     "license": "MIT",
     "autoload": {
@@ -16,9 +16,9 @@
         }
     },
     "require": {
-        "php": "~5.4|~7.0",
+        "php": "~5.5|~7.0",
         "php-di/php-di": "^5.0",
-        "symfony/dependency-injection": "~2.3"
+        "symfony/dependency-injection": "^3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.8"
