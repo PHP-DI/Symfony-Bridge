@@ -7,9 +7,9 @@
  * @license   http://www.opensource.org/licenses/mit-license.php MIT (see the LICENSE file)
  */
 
-namespace FunctionalTest\DI\Bridge\Symfony;
+namespace DI\Bridge\Symfony\Test\FunctionalTest;
 
-use FunctionalTest\DI\Bridge\Symfony\Fixtures\ContainerAwareController;
+use DI\Bridge\Symfony\Test\FunctionalTest\Fixtures\ContainerAwareController;
 
 /**
  * @coversNothing
@@ -25,7 +25,7 @@ class ContainerAwareInterfaceTest extends AbstractFunctionalTest
         $container = $kernel->getContainer();
 
         /** @var ContainerAwareController $class */
-        $class = $container->get('FunctionalTest\DI\Bridge\Symfony\Fixtures\ContainerAwareController');
+        $class = $container->get(ContainerAwareController::class);
 
         $this->assertSame($container, $class->container);
     }

@@ -7,12 +7,12 @@
  * @license   http://www.opensource.org/licenses/mit-license.php MIT (see the LICENSE file)
  */
 
-namespace FunctionalTest\DI\Bridge\Symfony;
+namespace DI\Bridge\Symfony\Test\FunctionalTest;
 
 use DI\Bridge\Symfony\SymfonyContainerBridge;
 use DI\Container;
-use FunctionalTest\DI\Bridge\Symfony\Fixtures\Class1;
-use FunctionalTest\DI\Bridge\Symfony\Fixtures\Class2;
+use DI\Bridge\Symfony\Test\FunctionalTest\Fixtures\Class1;
+use DI\Bridge\Symfony\Test\FunctionalTest\Fixtures\Class2;
 
 /**
  * Tests interactions between containers, i.e. entries that reference other entries in
@@ -36,7 +36,7 @@ class ContainerInteractionTest extends AbstractFunctionalTest
 
         $phpdiContainer->set(
             'foo',
-            \DI\object('FunctionalTest\DI\Bridge\Symfony\Fixtures\Class1')
+            \DI\object(Class1::class)
                 ->constructor(\DI\link('class2'))
         );
 

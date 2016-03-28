@@ -1,3 +1,0 @@
-services:
-    class2:
-        class: FunctionalTest\DI\Bridge\Symfony\Fixtures\Class2

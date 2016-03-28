@@ -1,0 +1,4 @@
+services:
+    class1:
+        class: DI\Bridge\Symfony\Test\FunctionalTest\Fixtures\Class1
+        arguments: [ '@DI\\Bridge\\Symfony\\Test\\FunctionalTest\\Fixtures\\Class2' ]

@@ -1,6 +1,6 @@
 <?php
 
-namespace FunctionalTest\DI\Bridge\Symfony\Fixtures;
+namespace DI\Bridge\Symfony\Test\FunctionalTest\Fixtures;
 
 use DI\Bridge\Symfony\Kernel;
 use DI\ContainerBuilder;

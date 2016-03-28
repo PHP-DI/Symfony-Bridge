@@ -1,6 +1,6 @@
 <?php
 
-namespace FunctionalTest\DI\Bridge\Symfony\Fixtures;
+namespace DI\Bridge\Symfony\Test\FunctionalTest\Fixtures;
 
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;

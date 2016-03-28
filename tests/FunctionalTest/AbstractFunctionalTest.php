@@ -1,9 +1,9 @@
 <?php
 
 
-namespace FunctionalTest\DI\Bridge\Symfony;
+namespace DI\Bridge\Symfony\Test\FunctionalTest;
 
-use FunctionalTest\DI\Bridge\Symfony\Fixtures\AppKernel;
+use DI\Bridge\Symfony\Test\FunctionalTest\Fixtures\AppKernel;
 use Symfony\Component\Filesystem\Filesystem;
 
 abstract class AbstractFunctionalTest extends \PHPUnit_Framework_TestCase

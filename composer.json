@@ -10,9 +10,8 @@
         }
     },
     "autoload-dev": {
-        "psr-0": {
-            "UnitTest\\DI\\Bridge\\Symfony\\": "tests/",
-            "FunctionalTest\\DI\\Bridge\\Symfony\\": "tests/"
+        "psr-4": {
+            "DI\\Bridge\\Symfony\\Test\\": "tests/"
         }
     },
     "require": {

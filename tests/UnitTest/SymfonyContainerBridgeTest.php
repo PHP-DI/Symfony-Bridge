@@ -7,7 +7,7 @@
  * @license   http://www.opensource.org/licenses/mit-license.php MIT (see the LICENSE file)
  */
 
-namespace UnitTest\DI\Bridge\Symfony;
+namespace DI\Bridge\Symfony\Test\UnitTest;
 
 use DI\Bridge\Symfony\SymfonyContainerBridge;
 use DI\ContainerBuilder;

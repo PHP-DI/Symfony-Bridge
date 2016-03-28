@@ -7,11 +7,11 @@
  * @license   http://www.opensource.org/licenses/mit-license.php MIT (see the LICENSE file)
  */
 
-namespace FunctionalTest\DI\Bridge\Symfony;
+namespace DI\Bridge\Symfony\Test\FunctionalTest;
 
 use DI\Bridge\Symfony\SymfonyContainerBridge;
-use FunctionalTest\DI\Bridge\Symfony\Fixtures\Class1;
-use FunctionalTest\DI\Bridge\Symfony\Fixtures\Class2;
+use DI\Bridge\Symfony\Test\FunctionalTest\Fixtures\Class1;
+use DI\Bridge\Symfony\Test\FunctionalTest\Fixtures\Class2;
 
 /**
  * @coversNothing
@@ -35,7 +35,7 @@ class KernelTest extends AbstractFunctionalTest
     {
         $kernel = $this->createKernel();
 
-        $object = $kernel->getContainer()->get('FunctionalTest\DI\Bridge\Symfony\Fixtures\Class1');
+        $object = $kernel->getContainer()->get(Class1::class);
         $this->assertTrue($object instanceof Class1);
     }
 
