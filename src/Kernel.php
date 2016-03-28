@@ -17,6 +17,8 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 /**
  * Customization of Symfony's kernel to setup PHP-DI.
  *
+ * Extend this class instead of Symfony's base kernel.
+ *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
  */
 abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
@@ -33,13 +35,15 @@ abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
     }
 
     /**
+     * Implement this method to configure PHP-DI.
+     *
      * @return ContainerInterface
      */
     abstract protected function buildPHPDIContainer(\DI\ContainerBuilder $builder);
 
     protected function getContainerBaseClass()
     {
-        return 'DI\Bridge\Symfony\SymfonyContainerBridge';
+        return SymfonyContainerBridge::class;
     }
 
     protected function buildContainer()
