@@ -17,7 +17,7 @@ use DI\Bridge\Symfony\Test\FunctionalTest\Fixtures\ContainerAwareController;
 class ContainerAwareInterfaceTest extends AbstractFunctionalTest
 {
     /**
-     * @link https://github.com/PHP-DI/Symfony2-Bridge/issues/2
+     * @link https://github.com/PHP-DI/Symfony-Bridge/issues/2
      */
     public function testContainerAware()
     {

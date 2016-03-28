@@ -1,5 +1,5 @@
 {
-    "name": "php-di/symfony2-bridge",
+    "name": "php-di/symfony-bridge",
     "type": "library",
     "description": "Integrates PHP-DI to Symfony",
     "homepage": "http://php-di.org/doc/frameworks/symfony2.html",

@@ -1,6 +1,6 @@
 # PHP-DI integration with Symfony
 
-[![Build Status](https://travis-ci.org/PHP-DI/Symfony2-Bridge.png?branch=master)](https://travis-ci.org/PHP-DI/Symfony2-Bridge)
+[![Build Status](https://travis-ci.org/PHP-DI/Symfony-Bridge.png?branch=master)](https://travis-ci.org/PHP-DI/Symfony-Bridge)
 
 This package provides integration for PHP-DI with Symfony.
 
