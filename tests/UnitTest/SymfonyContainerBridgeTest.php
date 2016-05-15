@@ -19,7 +19,7 @@ class SymfonyContainerBridgeTest extends \PHPUnit_Framework_TestCase
     {
         $wrapper = new SymfonyContainerBridge();
 
-        $fallback = $this->getMockForAbstractClass(ContainerInterface::class);
+        $fallback = $this->getMockForAbstractClass('Interop\Container\ContainerInterface');
         $fallback->expects($this->once())
             ->method('has')
             ->with('foo')
@@ -34,7 +34,7 @@ class SymfonyContainerBridgeTest extends \PHPUnit_Framework_TestCase
     {
         $wrapper = new SymfonyContainerBridge();
 
-        $fallback = $this->getMockForAbstractClass(ContainerInterface::class);
+        $fallback = $this->getMockForAbstractClass('Interop\Container\ContainerInterface');
         $fallback->expects($this->once())
             ->method('get')
             ->with('foo')
