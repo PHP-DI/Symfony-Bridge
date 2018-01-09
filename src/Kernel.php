@@ -102,7 +102,7 @@ abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
     /**
      * @return ContainerInterface
      */
-    private function getPHPDIContainer()
+    protected function getPHPDIContainer()
     {
         if ($this->phpdiContainer === null) {
             $builder = new \DI\ContainerBuilder();
