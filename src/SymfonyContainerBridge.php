@@ -10,7 +10,7 @@
 namespace DI\Bridge\Symfony;
 
 use DI\NotFoundException;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Symfony\Component\DependencyInjection\Container as SymfonyContainer;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface as SymfonyContainerInterface;
@@ -24,7 +24,7 @@ use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
  */
-class SymfonyContainerBridge extends SymfonyContainer implements SymfonyContainerInterface, ContainerInterface
+class SymfonyContainerBridge extends SymfonyContainer implements SymfonyContainerInterface
 {
     /**
      * @var ContainerInterface|null
@@ -87,7 +87,7 @@ class SymfonyContainerBridge extends SymfonyContainer implements SymfonyContaine
             return $entry;
         } catch (NotFoundException $e) {
             if ($invalidBehavior === self::EXCEPTION_ON_INVALID_REFERENCE) {
-                throw new ServiceNotFoundException($id);
+                throw new ServiceNotFoundException($id, null, $e);
             }
         }
 

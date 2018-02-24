@@ -11,7 +11,8 @@ namespace DI\Bridge\Symfony\Test\UnitTest;
 
 use DI\Bridge\Symfony\SymfonyContainerBridge;
 use DI\ContainerBuilder;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Psr\Container\ContainerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface as SfContainerInterface;
 
 class SymfonyContainerBridgeTest extends \PHPUnit_Framework_TestCase
 {
@@ -19,7 +20,7 @@ class SymfonyContainerBridgeTest extends \PHPUnit_Framework_TestCase
     {
         $wrapper = new SymfonyContainerBridge();
 
-        $fallback = $this->getMockForAbstractClass('Interop\Container\ContainerInterface');
+        $fallback = $this->getMockForAbstractClass(ContainerInterface::class);
         $fallback->expects($this->once())
             ->method('has')
             ->with('foo')
@@ -34,7 +35,7 @@ class SymfonyContainerBridgeTest extends \PHPUnit_Framework_TestCase
     {
         $wrapper = new SymfonyContainerBridge();
 
-        $fallback = $this->getMockForAbstractClass('Interop\Container\ContainerInterface');
+        $fallback = $this->getMockForAbstractClass(ContainerInterface::class);
         $fallback->expects($this->once())
             ->method('get')
             ->with('foo')
@@ -51,7 +52,7 @@ class SymfonyContainerBridgeTest extends \PHPUnit_Framework_TestCase
 
         $wrapper->setFallbackContainer(ContainerBuilder::buildDevContainer());
 
-        $this->assertNull($wrapper->get('foo', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+        $this->assertNull($wrapper->get('foo', SfContainerInterface::NULL_ON_INVALID_REFERENCE));
     }
 
     /**
