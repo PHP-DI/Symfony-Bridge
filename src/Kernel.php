@@ -95,7 +95,7 @@ abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
 
     private function disableDebugClassLoader()
     {
-        if (!class_exists('Symfony\Component\Debug\DebugClassLoader')) {
+        if (!class_exists(DebugClassLoader::class)) {
             return;
         }
 
