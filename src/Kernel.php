@@ -37,8 +37,6 @@ abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
     /**
      * Implement this method to configure PHP-DI.
      *
-     * @param \DI\ContainerBuilder $builder
-     *
      * @return ContainerInterface
      */
     abstract protected function buildPHPDIContainer(\DI\ContainerBuilder $builder);
