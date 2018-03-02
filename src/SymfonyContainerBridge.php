@@ -24,7 +24,7 @@ use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
  */
-class SymfonyContainerBridge extends SymfonyContainer implements SymfonyContainerInterface
+class SymfonyContainerBridge extends SymfonyContainer implements SymfonyContainerInterface, ContainerInterface
 {
     /**
      * @var ContainerInterface|null
