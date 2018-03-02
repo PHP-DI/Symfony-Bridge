@@ -9,7 +9,6 @@
 
 namespace DI\Bridge\Symfony;
 
-use DI\ContainerBuilder as DiContainerBuilder;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Debug\DebugClassLoader;
 use Symfony\Component\DependencyInjection\Compiler\CheckExceptionOnInvalidReferenceBehaviorPass;
@@ -38,11 +37,11 @@ abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
     /**
      * Implement this method to configure PHP-DI.
      *
-     * @param DiContainerBuilder $builder
+     * @param \DI\ContainerBuilder $builder
      *
      * @return ContainerInterface
      */
-    abstract protected function buildPHPDIContainer(DiContainerBuilder $builder);
+    abstract protected function buildPHPDIContainer(\DI\ContainerBuilder $builder);
 
     protected function getContainerBaseClass()
     {
@@ -108,7 +107,7 @@ abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
     protected function getPHPDIContainer()
     {
         if ($this->phpdiContainer === null) {
-            $builder = new DiContainerBuilder();
+            $builder = new \DI\ContainerBuilder();
             $builder->wrapContainer($this->getContainer());
 
             $this->phpdiContainer = $this->buildPHPDIContainer($builder);
