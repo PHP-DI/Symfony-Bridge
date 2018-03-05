@@ -1,3 +1,4 @@
 services:
     class2:
         class: DI\Bridge\Symfony\Test\FunctionalTest\Fixtures\Class2
+        public: true

@@ -9,7 +9,7 @@
 
 namespace DI\Bridge\Symfony;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Symfony\Component\Debug\DebugClassLoader;
 use Symfony\Component\DependencyInjection\Compiler\CheckExceptionOnInvalidReferenceBehaviorPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -92,7 +92,7 @@ abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
 
     private function disableDebugClassLoader()
     {
-        if (!class_exists('Symfony\Component\Debug\DebugClassLoader')) {
+        if (!class_exists(DebugClassLoader::class)) {
             return;
         }
 

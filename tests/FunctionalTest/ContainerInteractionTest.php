@@ -36,7 +36,7 @@ class ContainerInteractionTest extends AbstractFunctionalTest
 
         $phpdiContainer->set(
             'foo',
-            \DI\object(Class1::class)
+            \DI\create(Class1::class)
                 ->constructor(\DI\get('class2'))
         );
 
@@ -69,7 +69,9 @@ class ContainerInteractionTest extends AbstractFunctionalTest
         /** @var Container $phpdiContainer */
         $phpdiContainer = $container->getFallbackContainer();
 
-        $phpdiContainer->set('foo', \DI\get('class2'));
+        $ref = \DI\get('class2');
+        $ref->setName('foo');
+        $phpdiContainer->set('foo', $ref);
 
         $class2 = $container->get('foo');
 
