@@ -16,7 +16,7 @@ use DI\Bridge\Symfony\Test\FunctionalTest\Fixtures\Class2;
 /**
  * @coversNothing
  */
-class KernelTest extends AbstractFunctionalTest
+class KernelWithPhpDiContainerTest extends AbstractFunctionalTest
 {
     /**
      * @test

@@ -2,11 +2,11 @@
 
 namespace DI\Bridge\Symfony\Test\FunctionalTest\Fixtures;
 
-use DI\Bridge\Symfony\Kernel;
+use DI\Bridge\Symfony\KernelWithPhpDiContainer;
 use DI\ContainerBuilder;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
-class AppKernel extends Kernel
+class AppKernel extends KernelWithPhpDiContainer
 {
     private $configFile;
 

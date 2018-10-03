@@ -15,31 +15,19 @@ use Symfony\Component\DependencyInjection\Compiler\CheckExceptionOnInvalidRefere
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
- * Customization of Symfony's kernel to setup PHP-DI.
+ * Customization of Symfony's kernel to setup any PSR-11 container.
  *
  * Extend this class instead of Symfony's base kernel.
  *
- * @author Matthieu Napoli <matthieu@mnapoli.fr>
+ * @author Julien Janvier <j.janvier@gmail.com>
  */
-abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
+abstract class KernelWithPsr11Container extends \Symfony\Component\HttpKernel\Kernel
 {
-    /**
-     * @var ContainerInterface
-     */
-    private $phpdiContainer;
-
     public function __construct($environment, $debug)
     {
         parent::__construct($environment, $debug);
         $this->disableDebugClassLoader();
     }
-
-    /**
-     * Implement this method to configure PHP-DI.
-     *
-     * @return ContainerInterface
-     */
-    abstract protected function buildPHPDIContainer(\DI\ContainerBuilder $builder);
 
     protected function getContainerBaseClass()
     {
@@ -62,7 +50,7 @@ abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
         /** @var SymfonyContainerBridge $rootContainer */
         $rootContainer = $this->getContainer();
 
-        $rootContainer->setFallbackContainer($this->getPHPDIContainer());
+        $rootContainer->setFallbackContainer($this->getFallbackContainer());
     }
 
     /**
@@ -102,15 +90,5 @@ abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
     /**
      * @return ContainerInterface
      */
-    protected function getPHPDIContainer()
-    {
-        if ($this->phpdiContainer === null) {
-            $builder = new \DI\ContainerBuilder();
-            $builder->wrapContainer($this->getContainer());
-
-            $this->phpdiContainer = $this->buildPHPDIContainer($builder);
-        }
-
-        return $this->phpdiContainer;
-    }
+    abstract protected function getFallbackContainer();
 }
