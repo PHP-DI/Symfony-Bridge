@@ -21,7 +21,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
  */
-abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
+abstract class KernelWithPhpDiContainer extends \Symfony\Component\HttpKernel\Kernel
 {
     /**
      * @var ContainerInterface
