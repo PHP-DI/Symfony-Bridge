@@ -79,16 +79,20 @@ abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
     private function removeInvalidReferenceBehaviorPass(ContainerBuilder $container)
     {
         $passConfig = $container->getCompilerPassConfig();
-        $compilationPasses = $passConfig->getRemovingPasses();
 
-        foreach ($compilationPasses as $i => $pass) {
-            if ($pass instanceof CheckExceptionOnInvalidReferenceBehaviorPass) {
-                unset($compilationPasses[$i]);
-                break;
+        $compilationPassRemover = static function (array $compilationPasses): array {
+            foreach ($compilationPasses as $i => $pass) {
+                if ($pass instanceof CheckExceptionOnInvalidReferenceBehaviorPass) {
+                    unset($compilationPasses[$i]);
+                    break;
+                }
             }
-        }
 
-        $passConfig->setRemovingPasses($compilationPasses);
+            return $compilationPasses;
+        };
+
+        $passConfig->setRemovingPasses($compilationPassRemover($passConfig->getRemovingPasses()));
+        $passConfig->setAfterRemovingPasses($compilationPassRemover($passConfig->getAfterRemovingPasses()));
     }
 
     private function disableDebugClassLoader()

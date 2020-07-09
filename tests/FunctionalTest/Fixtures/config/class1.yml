@@ -1,8 +1,4 @@
 services:
-    DI\Bridge\Symfony\Test\FunctionalTest\Fixtures\Class2:
-        class: DI\Bridge\Symfony\Test\FunctionalTest\Fixtures\Class2
-        synthetic: true
-
     class1:
         class: DI\Bridge\Symfony\Test\FunctionalTest\Fixtures\Class1
         public: true
