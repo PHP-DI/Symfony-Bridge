@@ -7,7 +7,7 @@ php:
 
 matrix:
   include:
-    - php: 7.0
+    - php: 7.2
       env: dependencies=lowest
 
 before_script:
