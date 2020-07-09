@@ -10,9 +10,10 @@
 namespace DI\Bridge\Symfony;
 
 use Psr\Container\ContainerInterface;
-use Symfony\Component\Debug\DebugClassLoader;
+use Symfony\Component\Debug\DebugClassLoader as LegacyDebugClassLoader;
 use Symfony\Component\DependencyInjection\Compiler\CheckExceptionOnInvalidReferenceBehaviorPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\ErrorHandler\DebugClassLoader;
 
 /**
  * Customization of Symfony's kernel to setup PHP-DI.
@@ -92,11 +93,17 @@ abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
 
     private function disableDebugClassLoader()
     {
-        if (!class_exists(DebugClassLoader::class)) {
+        if (class_exists(DebugClassLoader::class)) {
+            DebugClassLoader::disable();
+
             return;
         }
 
-        DebugClassLoader::disable();
+        if (!class_exists(LegacyDebugClassLoader::class)) {
+            return;
+        }
+
+        LegacyDebugClassLoader::disable();
     }
 
     /**
