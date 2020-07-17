@@ -14,7 +14,7 @@ use DI\Bridge\Symfony\Test\FunctionalTest\Fixtures\ContainerAwareController;
 /**
  * @coversNothing
  */
-class ContainerAwareInterfaceTest extends AbstractFunctionalTest
+class ContainerAwareTest extends AbstractFunctionalTest
 {
     /**
      * @link https://github.com/PHP-DI/Symfony-Bridge/issues/2
@@ -27,6 +27,6 @@ class ContainerAwareInterfaceTest extends AbstractFunctionalTest
         /** @var ContainerAwareController $class */
         $class = $container->get(ContainerAwareController::class);
 
-        $this->assertSame($container, $class->container);
+        $this::assertSame($container, $class->container);
     }
 }

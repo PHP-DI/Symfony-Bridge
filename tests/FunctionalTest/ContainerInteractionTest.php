@@ -25,7 +25,7 @@ class ContainerInteractionTest extends AbstractFunctionalTest
     /**
      * @test Get a Symfony entry from PHP-DI's container
      */
-    public function phpdi_should_get_entries_from_symfony()
+    public function phpdiShouldGetEntriesFromSymfony()
     {
         $kernel = $this->createKernel('class2.yml');
 
@@ -42,7 +42,7 @@ class ContainerInteractionTest extends AbstractFunctionalTest
 
         $class1 = $container->get('foo');
 
-        $this->assertTrue($class1 instanceof Class1);
+        $this::assertTrue($class1 instanceof Class1);
     }
 
     /**
@@ -54,13 +54,13 @@ class ContainerInteractionTest extends AbstractFunctionalTest
 
         $class1 = $kernel->getContainer()->get('class1');
 
-        $this->assertTrue($class1 instanceof Class1);
+        $this::assertTrue($class1 instanceof Class1);
     }
 
     /**
      * @test Alias a Symfony entry from PHP-DI's container
      */
-    public function phpdi_aliases_can_reference_symfony_entries()
+    public function phpdiAliasesCanReferenceSymfonyEntries()
     {
         $kernel = $this->createKernel('class2.yml');
 
@@ -75,6 +75,6 @@ class ContainerInteractionTest extends AbstractFunctionalTest
 
         $class2 = $container->get('foo');
 
-        $this->assertTrue($class2 instanceof Class2);
+        $this::assertTrue($class2 instanceof Class2);
     }
 }
