@@ -18,14 +18,20 @@ use DI\Bridge\Symfony\Test\FunctionalTest\Fixtures\Class2;
  */
 class KernelTest extends AbstractFunctionalTest
 {
-    public function testKernelShouldBoot()
+    /**
+     * @test
+     */
+    public function kernel_should_boot()
     {
         $kernel = $this->createKernel();
 
         $this::assertInstanceOf(SymfonyContainerBridge::class, $kernel->getContainer());
     }
 
-    public function testPhpdiShouldResolveClasses()
+    /**
+     * @test
+     */
+    public function phpdi_should_resolve_classes()
     {
         $kernel = $this->createKernel();
 
@@ -33,7 +39,10 @@ class KernelTest extends AbstractFunctionalTest
         $this::assertInstanceOf(Class1::class, $object);
     }
 
-    public function testSymfonyShouldResolveClasses()
+    /**
+     * @test
+     */
+    public function symfony_should_resolve_classes()
     {
         $kernel = $this->createKernel('class2.yml');
 

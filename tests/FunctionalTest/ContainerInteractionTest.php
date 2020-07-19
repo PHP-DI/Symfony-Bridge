@@ -25,7 +25,7 @@ class ContainerInteractionTest extends AbstractFunctionalTest
     /**
      * @test Get a Symfony entry from PHP-DI's container
      */
-    public function phpdiShouldGetEntriesFromSymfony()
+    public function phpdi_should_get_entries_from_symfony()
     {
         $kernel = $this->createKernel('class2.yml');
 
@@ -60,7 +60,7 @@ class ContainerInteractionTest extends AbstractFunctionalTest
     /**
      * @test Alias a Symfony entry from PHP-DI's container
      */
-    public function phpdiAliasesCanReferenceSymfonyEntries()
+    public function phpdi_aliases_can_reference_symfony_entries()
     {
         $kernel = $this->createKernel('class2.yml');
 
