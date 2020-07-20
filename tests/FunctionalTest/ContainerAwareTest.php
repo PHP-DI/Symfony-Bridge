@@ -27,6 +27,6 @@ class ContainerAwareTest extends AbstractFunctionalTest
         /** @var ContainerAwareController $class */
         $class = $container->get(ContainerAwareController::class);
 
-        $this::assertSame($container, $class->container);
+        $this->assertSame($container, $class->container);
     }
 }

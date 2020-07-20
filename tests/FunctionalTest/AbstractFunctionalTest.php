@@ -4,10 +4,9 @@
 namespace DI\Bridge\Symfony\Test\FunctionalTest;
 
 use DI\Bridge\Symfony\Test\FunctionalTest\Fixtures\AppKernel;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 
-abstract class AbstractFunctionalTest extends TestCase
+abstract class AbstractFunctionalTest extends \PHPUnit_Framework_TestCase
 {
     protected function createKernel($configFile = 'empty.yml')
     {

@@ -42,7 +42,7 @@ class ContainerInteractionTest extends AbstractFunctionalTest
 
         $class1 = $container->get('foo');
 
-        $this::assertTrue($class1 instanceof Class1);
+        $this->assertTrue($class1 instanceof Class1);
     }
 
     /**
@@ -54,7 +54,7 @@ class ContainerInteractionTest extends AbstractFunctionalTest
 
         $class1 = $kernel->getContainer()->get('class1');
 
-        $this::assertTrue($class1 instanceof Class1);
+        $this->assertTrue($class1 instanceof Class1);
     }
 
     /**
@@ -75,6 +75,6 @@ class ContainerInteractionTest extends AbstractFunctionalTest
 
         $class2 = $container->get('foo');
 
-        $this::assertTrue($class2 instanceof Class2);
+        $this->assertTrue($class2 instanceof Class2);
     }
 }

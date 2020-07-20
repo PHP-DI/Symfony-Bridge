@@ -11,26 +11,24 @@ namespace DI\Bridge\Symfony\Test\UnitTest;
 
 use DI\Bridge\Symfony\SymfonyContainerBridge;
 use DI\ContainerBuilder;
-use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface as SfContainerInterface;
-use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 
-class SymfonyContainerBridgeTest extends TestCase
+class SymfonyContainerBridgeTest extends \PHPUnit_Framework_TestCase
 {
     public function testHasFallback()
     {
         $wrapper = new SymfonyContainerBridge();
 
         $fallback = $this->getMockForAbstractClass(ContainerInterface::class);
-        $fallback->expects(self::once())
+        $fallback->expects($this->once())
             ->method('has')
             ->with('foo')
-            ->will(self::returnValue(false));
+            ->will($this->returnValue(false));
 
         $wrapper->setFallbackContainer($fallback);
 
-        $this::assertFalse($wrapper->has('foo'));
+        $this->assertFalse($wrapper->has('foo'));
     }
 
     public function testGetFallback()
@@ -38,14 +36,14 @@ class SymfonyContainerBridgeTest extends TestCase
         $wrapper = new SymfonyContainerBridge();
 
         $fallback = $this->getMockForAbstractClass(ContainerInterface::class);
-        $fallback->expects(self::once())
+        $fallback->expects($this->once())
             ->method('get')
             ->with('foo')
-            ->will(self::returnValue('bar'));
+            ->will($this->returnValue('bar'));
 
         $wrapper->setFallbackContainer($fallback);
 
-        $this::assertEquals('bar', $wrapper->get('foo'));
+        $this->assertEquals('bar', $wrapper->get('foo'));
     }
 
     public function testGetNotFoundReturnNull()
@@ -54,17 +52,18 @@ class SymfonyContainerBridgeTest extends TestCase
 
         $wrapper->setFallbackContainer(ContainerBuilder::buildDevContainer());
 
-        $this::assertNull($wrapper->get('foo', SfContainerInterface::NULL_ON_INVALID_REFERENCE));
+        $this->assertNull($wrapper->get('foo', SfContainerInterface::NULL_ON_INVALID_REFERENCE));
     }
 
+    /**
+     * @expectedException \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
+     */
     public function testGetNotFoundException()
     {
-        $this->expectException(ServiceNotFoundException::class);
-
         $wrapper = new SymfonyContainerBridge();
 
         $wrapper->setFallbackContainer(ContainerBuilder::buildDevContainer());
 
-        $this::assertNull($wrapper->get('foo'));
+        $this->assertNull($wrapper->get('foo'));
     }
 }

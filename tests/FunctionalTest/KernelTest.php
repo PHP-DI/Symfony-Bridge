@@ -25,7 +25,7 @@ class KernelTest extends AbstractFunctionalTest
     {
         $kernel = $this->createKernel();
 
-        $this::assertInstanceOf(SymfonyContainerBridge::class, $kernel->getContainer());
+        $this->assertInstanceOf(SymfonyContainerBridge::class, $kernel->getContainer());
     }
 
     /**
@@ -36,7 +36,7 @@ class KernelTest extends AbstractFunctionalTest
         $kernel = $this->createKernel();
 
         $object = $kernel->getContainer()->get(Class1::class);
-        $this::assertInstanceOf(Class1::class, $object);
+        $this->assertInstanceOf(Class1::class, $object);
     }
 
     /**
@@ -47,6 +47,6 @@ class KernelTest extends AbstractFunctionalTest
         $kernel = $this->createKernel('class2.yml');
 
         $object = $kernel->getContainer()->get('class2');
-        $this::assertInstanceOf(Class2::class, $object);
+        $this->assertInstanceOf(Class2::class, $object);
     }
 }
